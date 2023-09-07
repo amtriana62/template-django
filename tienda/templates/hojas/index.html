@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+<!--variables dinámicas-->
+{% block titulo %} Lista de hojas {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crearhoja' %}" role="button">Agregar nueva hoja</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Hojas</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hoja in hojas %}
+                    <tr class="">
+                        <td>{{hoja.id}}</td>
+                        <td>{{hoja.nombre}}</td>
+                        <td>
+                           
+                            <img src="{{hoja.imagen.url}}" height="100"></img>
+                        
+                        </td><!--para que se vea la imagen.url-->
+                        
+                        <td>{{hoja.descripcion}}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-primary" href="{% url 'editarhoja' hoja.id %}" role="button">Editar</a> |
+                            <a name="" id="" class="btn btn-danger" href="{% url 'borrarhoja' hoja.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    <!--el tr representa una fila-->
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+{% endblock %}

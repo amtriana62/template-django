@@ -1,0 +1,39 @@
+<form enctype="multipart/form-data" method="post">
+  <!--django utiliza un token para saber que viene de su propia aplicacion
+  se llama csrf_token es la llave-->
+    {% csrf_token %}
+    {% for campo in formulario %} <!--formulario es el dato que nos envian en las views-->
+    <div class="mb-3">
+      <label for="" class="form-label">{{campo.label}}:</label>
+      <!--el label viene del nombre que tiene verbouse en el models.py-->
+      <br>
+      <!--obtener el tipo de dato que viene del fomulario widget..nombre, imagen, descripcion-->
+      <!--preguntar si e sun campo tipo field para mostrar las imagenes en la edicion-->
+      {% if campo.field.widget.input_type == 'file' and campo.value %}
+      <img src="{{MEDIA_URL}}/imagenes/{{campo.value}}" width="100">
+      {% endif %}
+      <input 
+      
+      type="{{campo.field.widget.input_type}}"
+        class="form-control" 
+        name="{{ campo.name }}" 
+        id="" 
+        aria-describedby="helpId" 
+        placeholder="{{campo.label}}"
+        value="{{campo.value | default:''}}" />
+
+        <!--se va a agregar una propiedad valie para que pueda mostrar los 
+          datos en la edicion, si no hay datos que muestre vacio ''
+        -->
+    
+      </div>
+      <!--en caso de error:-->
+      <div
+      class="col-12 help-text">
+      {{campo.errors}}
+      </div>
+    {% endfor %}
+    <!--loop de los campos que hay en la tabla Hoja-->
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'hojas' %}" role="button">Cancelar</a>
+  </form>
