@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tienda',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'PASSWORD':'lHkw4NFQOtvkMxmCfjWJ',
+        'HOST':'containers-us-west-147.railway.app',
+        'PORT':'6503',
     }
 }
 
